@@ -42,17 +42,18 @@
                 display: block;
                 margin: 1rem auto;
                 width: 100%;
-
+                
                 label {
                     display: block;
                     margin-bottom: .5rem;
                 }
-
+                
                 input {
                     border: 1px solid black;
                     padding: 2rem 1rem;
                     border-radius: 0.5rem;
                     width: 100%;
+                    font-size: 1rem;
                     box-sizing: border-box;
                 }
 
