@@ -1,1 +1,25 @@
-<p>home works!</p>
+<div class="header-section">
+    <div class="logo-container">
+        <a href="">Megabytes</a>
+    </div>
+    <mat-icon aria-label="Menu Icon" class="menu-icon" (click)="toggleMenu()">menu</mat-icon>
+    <nav *ngIf="showMenu | async">
+        <mat-icon class="close-menu" aria-label="Close Menu" (click)="toggleMenu()">close</mat-icon>
+        <ul class="nav-list">
+            <li>
+                <a class="nav-link" href="">Home</a>
+            </li>
+            <li>
+                <a class="nav-link" href="">Profile</a>
+            </li>
+            <li>
+                <a class="nav-link" href="">Messages</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<section class="content-section">
+    <div class="content-container">
+
+    </div>
+</section>
