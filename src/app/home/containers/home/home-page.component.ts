@@ -18,7 +18,7 @@ import { PostComponent } from '../../components/post/post.component';
 export class HomePageComponent implements OnInit {
 
   showMenu = new BehaviorSubject<boolean>(false);
-  posts = [1, 2]
+  posts = [1, 2, 3, 4, 5]
 
   constructor() { }
 
