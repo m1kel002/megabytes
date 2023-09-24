@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "aws s3 sync dist/megabytes/ s3://megabytes-bucket"
   },
   "private": true,
   "dependencies": {
