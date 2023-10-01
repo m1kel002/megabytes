@@ -53,3 +53,37 @@
         }
     }
 }
+
+@media only screen and (min-width: 1080px) {
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        .menu-icon {
+            display: none;
+        }
+        nav {
+            width: 100%;
+            background: none;
+            margin: 0;
+
+            .nav-list {
+                display: flex;
+                margin: 0;
+                justify-content: flex-end;
+                li {
+                    margin: 0 1rem;
+                }
+
+                a {
+                    font-size: 1rem;
+                    color: black;
+                }
+            }
+
+            .close-menu {
+                display: none;
+            }
+        }
+    }
+}

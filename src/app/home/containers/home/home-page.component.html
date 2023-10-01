@@ -2,8 +2,8 @@
     <div class="logo-container">
         <a href="">Megabytes</a>
     </div>
-    <mat-icon aria-label="Menu Icon" class="menu-icon" (click)="toggleMenu()">menu</mat-icon>
-    <nav *ngIf="showMenu | async">
+    <mat-icon aria-label="Open Menu" class="menu-icon" (click)="toggleMenu()">menu</mat-icon>
+    <nav>
         <mat-icon class="close-menu" aria-label="Close Menu" (click)="toggleMenu()">close</mat-icon>
         <ul class="nav-list">
             <li>
