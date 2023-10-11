@@ -8,7 +8,7 @@
     <div class="cta-container">
         <h2>Log in</h2>
         <div class="login-form">
-            <form>
+            <form [formGroup]="ctaForm">
                 <div class="input-container">
                     <label for="email">Email</label>
                     <input type="email" name="email" matInput formControlName="email">
@@ -18,12 +18,11 @@
                     <input matInput name="password" formControlName="password" type="password">
                     <a href="">forgot password?</a>
                 </div>
-                <input type="submit" value="Log in" (click)="openSignup()">
+                <input type="submit" value="Log in">
                 <div class="signup-container">
                     Haven't registered yet?
                     <span class="cta">
-                        <a href="#">Signup now!</a>
-                    </span>
+                        <a href="#" (click)="openDialog()">Signup now!</a> </span>
                 </div>
             </form>
         </div>

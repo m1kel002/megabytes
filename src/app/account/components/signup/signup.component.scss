@@ -1,3 +1,24 @@
 .signup-container {
     background-color: aqua;
+    height: 100vh;
+    background-color: rgb(7, 7, 7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .signup-form {
+        background-color: white;
+        padding: 3rem;
+        border-radius: 5px;
+
+        h2 {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .input-container {
+            margin: 1rem;
+        }
+    }
 }
