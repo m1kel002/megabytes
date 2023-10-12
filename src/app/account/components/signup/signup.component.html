@@ -2,26 +2,26 @@
     <div class="signup-form">
         <h2>Sign Up</h2>
         <form action="">
-            <div class="input-container">
-                <label for="firstName">First Name</label>
-                <input type="text" name="firstName" />
-            </div>
-            <div class="input-container">
-                <label for="lastName">Last Name</label>
-                <input type="text" name="lastName" />
-            </div>
-            <div class="input-container">
-                <label for="username">Username</label>
-                <input type="text" name="username" />
-            </div>
-            <div class="input-container">
-                <label for="email">Email</label>
-                <input type="email" name="email" />
-            </div>
-            <div class="input-container">
-                <label for="password">Password</label>
-                <input type="password" name="password" />
-            </div>
+            <mat-form-field floatLabel="never" class="input-container">
+                <mat-label>First Name</mat-label>
+                <input matInput type="text"/>
+            </mat-form-field>
+            <mat-form-field floatLabel="never" class="input-container">
+                <mat-label for="lastName">Last Name</mat-label>
+                <input matInput name="lastName" />
+            </mat-form-field>
+            <mat-form-field floatLabel="never" class="input-container">
+                <mat-label for="username">Username</mat-label>
+                <input matInput name="username" />
+            </mat-form-field>
+            <mat-form-field floatLabel="never" class="input-container">
+                <mat-label for="email">Email</mat-label>
+                <input matInput type="email" name="email" />
+            </mat-form-field>
+            <mat-form-field floatLabel="never" class="input-container">
+                <mat-label for="password">Password</mat-label>
+                <input matInput type="password" name="password" />
+            </mat-form-field>
         </form>
     </div>
 </div>

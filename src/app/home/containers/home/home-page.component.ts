@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 import { BehaviorSubject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { PostComponent } from '../../components/post/post.component';
