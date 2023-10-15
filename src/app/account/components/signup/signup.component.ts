@@ -30,4 +30,8 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {}
   constructor(private fb: FormBuilder) {}
+
+  onSubmit() {
+    console.log('@onSubmit', this.signUpForm.getRawValue());
+  }
 }
