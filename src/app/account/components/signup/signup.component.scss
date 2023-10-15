@@ -1,5 +1,4 @@
 .signup-container {
-    background-color: aqua;
     height: 100vh;
     background-color: rgb(7, 7, 7);
     display: flex;
@@ -10,10 +9,18 @@
         background-color: white;
         padding: 3rem;
         border-radius: 5px;
+        width: 20%;
         form {
             display: flex;
             flex-direction: column;
             margin-top: 3rem;
+            
+            button {
+                margin-top: 1rem;
+                padding: 0.5rem;
+                font-size: 1rem;
+                background-color: rgb(7,7,7);
+            }
         }
         h2 {
             width: 100%;
@@ -21,7 +28,7 @@
         }
 
         .input-container {
-            margin: 1rem;
+            margin: 0.2rem;
         }
     }
 }
