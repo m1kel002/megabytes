@@ -7,8 +7,7 @@
     align-items: center;
 
     .signup-form {
-        // background-color: white;
-        background-color: aqua;
+        background-color: white;
         padding: 3rem;
         border-radius: 5px;
         form {
@@ -23,9 +22,6 @@
 
         .input-container {
             margin: 1rem;
-            input {
-                background-color: red;
-            }
         }
     }
 }
