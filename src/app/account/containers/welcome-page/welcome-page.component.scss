@@ -87,8 +87,10 @@
         .signup-container {
             text-align: center;
 
-            a {
+            .cta {
                 font-weight: bold;
+                cursor: pointer;
+                text-decoration: underline;
             }
         }
     }

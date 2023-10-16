@@ -34,17 +34,10 @@ export class WelcomePageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // openSignup() {
-  //   this.dialog.open(DialogComponent, {
-  //     width: '400px',
-  //     disableClose: true,
-  //     autoFocus: true,
-  //   });
-  // }
   openDialog() {
     this.dialog.open(SignupComponent, {
-      width: '400px',
-      disableClose: true,
+      width: '600px',
+      position: { right: '0' },
     });
   }
 }

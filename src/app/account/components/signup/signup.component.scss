@@ -1,15 +1,9 @@
 .signup-container {
-    height: 100vh;
-    background-color: rgb(7, 7, 7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     .signup-form {
         background-color: white;
         padding: 3rem;
         border-radius: 5px;
-        width: 20%;
+        height: 100vh;
         form {
             display: flex;
             flex-direction: column;
