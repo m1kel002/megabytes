@@ -1,6 +1,14 @@
 .signup-container {
     width: 30vw;
     height: 100vh;
+    .close-button {
+        font-size: 30px;
+        height: 30px;
+        width: 30px;
+        float: right;
+        cursor: pointer;
+    }
+
     .signup-form {
         background-color: white;
         padding: 3rem;

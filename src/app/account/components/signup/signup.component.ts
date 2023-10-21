@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-signup',
@@ -16,6 +17,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
     MatButtonModule,
     MatDividerModule,
     ReactiveFormsModule,
+    MatIconModule,
   ],
 })
 export class SignupComponent implements OnInit {
