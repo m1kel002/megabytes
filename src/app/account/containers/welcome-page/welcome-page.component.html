@@ -1,4 +1,9 @@
-<div class="welcome-container">
+<mat-drawer-container>
+    <mat-drawer width="500px" position="end" [opened]="isDrawerOpened$ | async">
+        <app-signup></app-signup>
+    </mat-drawer>
+<mat-drawer-content>
+        <div class="welcome-container">
     <div class="banner-container">
         <div class="logo">
             <h1>Megabytes</h1>
@@ -16,14 +21,17 @@
                 <div class="input-container">
                     <label for="password">Password</label>
                     <input matInput name="password" formControlName="password" type="password">
-                    <a href="">forgot password?</a>
+                    <a href="#">forgot password?</a>
                 </div>
                 <input type="submit" value="Log in">
             </form>
             <div class="signup-container">
                 Haven't registered yet?
-                    <span class="cta"  (click)="openDialog()">Signup now!</span>
+                <span class="cta"  (click)="toggleDrawer()">Signup now!</span>
             </div>
         </div>
     </div>
 </div>
+
+</mat-drawer-content>
+</mat-drawer-container>
