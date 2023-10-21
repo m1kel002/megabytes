@@ -36,14 +36,11 @@ export class WelcomePageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  openDialog() {
-    this.dialog.open(SignupComponent, {
-      width: '600px',
-      position: { right: '0' },
-    });
-  }
-
   toggleDrawer() {
     this.isDrawerOpened$.next(!this.isDrawerOpened$.value);
+  }
+
+  onCloseSignupForm() {
+    this.isDrawerOpened$.next(false);
   }
 }

@@ -1,6 +1,6 @@
 <mat-drawer-container>
     <mat-drawer width="500px" position="end" [opened]="isDrawerOpened$ | async">
-        <app-signup></app-signup>
+        <app-signup (onCloseSignupForm)="onCloseSignupForm()"></app-signup>
     </mat-drawer>
 <mat-drawer-content>
         <div class="welcome-container">
