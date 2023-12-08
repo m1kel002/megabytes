@@ -7,9 +7,9 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  selector: 'app-signup-dialog',
+  templateUrl: './signup-dialog.component.html',
+  styleUrls: ['./signup-dialog.component.scss'],
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -20,7 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
   ],
 })
-export class SignupComponent implements OnInit {
+export class SignupDialogComponent implements OnInit {
   @Output() onCloseSignupForm = new EventEmitter();
   protected signUpForm = this.fb.group({
     firstName: this.fb.control('', [Validators.required]),
