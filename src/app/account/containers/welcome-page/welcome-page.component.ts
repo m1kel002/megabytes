@@ -6,7 +6,7 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { SignupComponent } from '../../components/signup/signup.component';
+import { SignupComponent } from '../signup/signup.component';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BehaviorSubject } from 'rxjs';
