@@ -35,6 +35,8 @@ export class SignupDialogComponent implements OnInit {
     email: this.fb.control('', [Validators.required]),
     password: this.fb.control('', [Validators.required]),
     confirmPassword: this.fb.control('', [Validators.required]),
+    birthdate: this.fb.control('', [Validators.required]),
+    gender: this.fb.control('', [Validators.required]),
   });
 
   ngOnInit(): void {}

@@ -17,18 +17,20 @@
       <div>
         <mat-form-field class="me-4">
           <mat-label>Gender</mat-label>
-          <mat-select>
+          <mat-select formControlName="gender">
             <mat-option value="female">Female</mat-option>
             <mat-option value="male">Male</mat-option>
           </mat-select>
+          <mat-error>Gender is required</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Birthdate</mat-label>
-          <input matInput [matDatepicker]="picker">
+          <input matInput [matDatepicker]="picker" formControlName="birthdate">
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="picker">
           </mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
+          <mat-error>Birthdate is required</mat-error>
         </mat-form-field>
       </div>
       <mat-form-field class="input-container">
