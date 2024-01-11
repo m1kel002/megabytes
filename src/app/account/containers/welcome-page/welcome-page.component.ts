@@ -10,6 +10,8 @@ import { SignupDialogComponent } from '../signup-dialog/signup-dialog.component'
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BehaviorSubject } from 'rxjs';
+import { AccountService } from '../../services/account.service';
+import { CognitoService } from 'src/app/shared/services/cognito.service';
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
@@ -29,10 +31,24 @@ import { BehaviorSubject } from 'rxjs';
 export class WelcomePageComponent implements OnInit {
   isDrawerOpened$ = new BehaviorSubject<boolean>(false);
   protected ctaForm = this.fb.group({
-    email: this.fb.control('', Validators.required),
+    username: this.fb.control('', Validators.required),
     password: this.fb.control('', Validators.required),
   });
-  constructor(private dialog: MatDialog, private fb: FormBuilder) {}
+
+  get username() {
+    return this.ctaForm.controls.username;
+  }
+
+  get password() {
+    return this.ctaForm.controls.password;
+  }
+
+  constructor(
+    private dialog: MatDialog,
+    private fb: FormBuilder,
+    private accountService: AccountService,
+    private cognitoService: CognitoService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -43,4 +59,16 @@ export class WelcomePageComponent implements OnInit {
   onCloseSignupForm() {
     this.isDrawerOpened$.next(false);
   }
+
+  onSubmit() {
+    if (this.ctaForm.valid) {
+      this.cognitoService
+        .login(this.username.value ?? '', this.password.value ?? '')
+        .then((response) => {
+          console.log('@RESP', response);
+        });
+    }
+  }
+
+  redirectToHome() {}
 }
