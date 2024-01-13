@@ -12,6 +12,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { BehaviorSubject } from 'rxjs';
 import { AccountService } from '../../services/account.service';
 import { CognitoService } from 'src/app/shared/services/cognito.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
@@ -47,7 +48,8 @@ export class WelcomePageComponent implements OnInit {
     private dialog: MatDialog,
     private fb: FormBuilder,
     private accountService: AccountService,
-    private cognitoService: CognitoService
+    private cognitoService: CognitoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -62,13 +64,17 @@ export class WelcomePageComponent implements OnInit {
 
   onSubmit() {
     if (this.ctaForm.valid) {
+      this.cognitoService.logout();
       this.cognitoService
         .login(this.username.value ?? '', this.password.value ?? '')
         .then((response) => {
-          console.log('@RESP', response);
+          alert(response);
+          this.redirectToHome();
         });
     }
   }
 
-  redirectToHome() {}
+  redirectToHome() {
+    this.router.navigate(['/home']);
+  }
 }

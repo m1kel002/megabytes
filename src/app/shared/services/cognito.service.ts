@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Amplify } from 'aws-amplify';
-import { signIn } from 'aws-amplify/auth';
+import { signIn, signOut, getCurrentUser } from 'aws-amplify/auth';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -17,5 +17,13 @@ export class CognitoService {
 
   login(username: string, password: string) {
     return signIn({ username, password });
+  }
+
+  logout() {
+    signOut();
+  }
+
+  getCurrentUser() {
+    return getCurrentUser();
   }
 }
