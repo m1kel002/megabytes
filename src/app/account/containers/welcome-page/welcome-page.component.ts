@@ -13,6 +13,7 @@ import { BehaviorSubject } from 'rxjs';
 import { AccountService } from '../../services/account.service';
 import { CognitoService } from 'src/app/shared/services/cognito.service';
 import { Router } from '@angular/router';
+import { AuthUser } from 'aws-amplify/auth';
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
@@ -68,7 +69,6 @@ export class WelcomePageComponent implements OnInit {
       this.cognitoService
         .login(this.username.value ?? '', this.password.value ?? '')
         .then((response) => {
-          alert(response);
           this.redirectToHome();
         });
     }
