@@ -13,7 +13,7 @@
     <div class="cta-container">
         <h2 class="text-3xl font-bold">Log in</h2>
         <div class="login-form">
-            <form [formGroup]="ctaForm" (submit)="onSubmit()">
+            <form [formGroup]="loginForm" (submit)="onSubmit()">
                 <div class="input-container">
                     <label for="username">Username</label>
                     <input type="text" name="username" matInput formControlName="username">

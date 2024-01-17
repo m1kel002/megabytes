@@ -14,6 +14,7 @@ import { AccountService } from '../../services/account.service';
 import { CognitoService } from 'src/app/shared/services/cognito.service';
 import { Router } from '@angular/router';
 import { AuthUser } from 'aws-amplify/auth';
+import { AuthResponse } from '../../../shared/models/auth-response.model';
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
@@ -32,17 +33,17 @@ import { AuthUser } from 'aws-amplify/auth';
 })
 export class WelcomePageComponent implements OnInit {
   isDrawerOpened$ = new BehaviorSubject<boolean>(false);
-  protected ctaForm = this.fb.group({
+  protected loginForm = this.fb.group({
     username: this.fb.control('', Validators.required),
     password: this.fb.control('', Validators.required),
   });
 
   get username() {
-    return this.ctaForm.controls.username;
+    return this.loginForm.controls.username;
   }
 
   get password() {
-    return this.ctaForm.controls.password;
+    return this.loginForm.controls.password;
   }
 
   constructor(
@@ -64,12 +65,18 @@ export class WelcomePageComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.ctaForm.valid) {
-      this.cognitoService.logout();
-      this.cognitoService
+    if (this.loginForm.valid) {
+      this.accountService
         .login(this.username.value ?? '', this.password.value ?? '')
-        .then((response) => {
-          this.redirectToHome();
+        .subscribe((response: AuthResponse) => {
+          console.log(response);
+          if (response.AuthenticationResult?.IdToken) {
+            localStorage.setItem(
+              'idToken',
+              response.AuthenticationResult.IdToken
+            );
+            this.redirectToHome();
+          }
         });
     }
   }
