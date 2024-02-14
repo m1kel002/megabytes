@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BehaviorSubject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { PostComponent } from '../../components/post/post.component';
-import { CognitoService } from 'src/app/shared/services/cognito.service';
+import { AccountService } from 'src/app/account/services/account.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home-page.component.html',
@@ -15,7 +15,7 @@ export class HomePageComponent implements OnInit {
   showMenu = new BehaviorSubject<boolean>(false);
   posts = [1, 2, 3, 4, 5];
 
-  constructor(private cognitoService: CognitoService) {}
+  constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
     this.getUserProfile();
@@ -26,8 +26,8 @@ export class HomePageComponent implements OnInit {
   }
 
   getUserProfile() {
-    return this.cognitoService.getCurrentUser().then((response) => {
-      console.log('@GETUSER', response);
+    this.accountService.getProfile().subscribe((response) => {
+      console.log('@getprofile', response);
     });
   }
 }
