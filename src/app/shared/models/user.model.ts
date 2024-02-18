@@ -1,3 +1,5 @@
+import { Entity } from './entity.model';
+
 export type User = Partial<
   Readonly<{
     username: string;
@@ -5,6 +7,9 @@ export type User = Partial<
     email: string;
     gender: string;
     birthdate: string;
-    name: string;
+    firstName: string | null | undefined;
+    lastName: string | null | undefined;
   }>
 >;
+
+export type Profile = Entity & Partial<Readonly<Omit<User, 'password'>>>;

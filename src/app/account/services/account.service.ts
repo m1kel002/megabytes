@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/shared/models/user.model';
+import { userStore } from 'src/app/shared/stores/user.store';
+import { formatDate } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -15,7 +17,16 @@ export class AccountService {
   }
 
   signup(user: User) {
-    return this.http.post(`${this.BASE_URL}/signup`, user);
+    const dateFormat = 'dd-MM-yyyy';
+    const formattedDate = formatDate(
+      user.birthdate?.toString() ?? '',
+      dateFormat,
+      'en-US'
+    );
+    return this.http.post(`${this.BASE_URL}/signup`, {
+      ...user,
+      birthdate: formattedDate,
+    });
   }
 
   getProfile() {
@@ -24,5 +35,9 @@ export class AccountService {
       localStorage.getItem('idToken') ?? ''
     );
     return this.http.get(`${this.BASE_URL}/profile`, { headers: headers });
+  }
+
+  testGetProfile() {
+    userStore.subscribe((data: any) => console.log('@authStore', data));
   }
 }
