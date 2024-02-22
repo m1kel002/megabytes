@@ -2,19 +2,36 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { AccountService } from 'src/app/account/services/account.service';
 import { BehaviorSubject } from 'rxjs';
+import { userStore } from '../stores/user.store';
+import { AuthResponse } from '../models/auth-response.model';
 
 @Injectable()
 export class AccountRepository {
   constructor(private accountService: AccountService) {}
-  // login
-  login() {}
+
   public isSignedup$ = new BehaviorSubject<boolean>(false);
   public loading$ = new BehaviorSubject<boolean>(false);
   public saving$ = new BehaviorSubject<boolean>(false);
+  public isLoggedIn$ = new BehaviorSubject<boolean>(false);
 
-  // signup
+  login(username: string, password: string) {
+    this.loading$.next(true);
+    this.accountService
+      .login(username, password)
+      .subscribe((response: AuthResponse) => {
+        console.log('@login', response);
+        this.loading$.next(false);
+        if (response.AuthenticationResult?.IdToken) {
+          localStorage.setItem(
+            'idToken',
+            response.AuthenticationResult.IdToken
+          );
+        }
+        this.isLoggedIn$.next(true);
+      });
+  }
+
   signup(user: User) {
-    // set loading to true
     this.loading$.next(true);
     this.accountService.signup(user).subscribe((response) => {
       console.log('@signup response', response);

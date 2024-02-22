@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -11,10 +11,8 @@ import { DialogComponent } from 'src/app/shared/components/dialog/dialog.compone
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BehaviorSubject } from 'rxjs';
 import { AccountService } from '../../services/account.service';
-import { CognitoService } from 'src/app/shared/services/cognito.service';
 import { Router } from '@angular/router';
-import { AuthUser } from 'aws-amplify/auth';
-import { AuthResponse } from '../../../shared/models/auth-response.model';
+import { AccountRepository } from 'src/app/shared/repositories/account.repository';
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
@@ -30,8 +28,9 @@ import { AuthResponse } from '../../../shared/models/auth-response.model';
     DialogComponent,
     MatSidenavModule,
   ],
+  providers: [AccountRepository],
 })
-export class WelcomePageComponent implements OnInit {
+export class WelcomePageComponent {
   isDrawerOpened$ = new BehaviorSubject<boolean>(false);
   protected loginForm = this.fb.group({
     username: this.fb.control('', Validators.required),
@@ -47,14 +46,11 @@ export class WelcomePageComponent implements OnInit {
   }
 
   constructor(
-    private dialog: MatDialog,
     private fb: FormBuilder,
     private accountService: AccountService,
-    private cognitoService: CognitoService,
-    private router: Router
+    private router: Router,
+    private accountRepository: AccountRepository
   ) {}
-
-  ngOnInit(): void {}
 
   toggleDrawer() {
     this.isDrawerOpened$.next(!this.isDrawerOpened$.value);
@@ -64,20 +60,31 @@ export class WelcomePageComponent implements OnInit {
     this.isDrawerOpened$.next(false);
   }
 
+  listenWhenLogin() {
+    this.accountRepository.isLoggedIn$.subscribe((isLoggedIn) =>
+      this.redirectToHome()
+    );
+  }
+
   onSubmit() {
     if (this.loginForm.valid) {
-      this.accountService
-        .login(this.username.value ?? '', this.password.value ?? '')
-        .subscribe((response: AuthResponse) => {
-          console.log(response);
-          if (response.AuthenticationResult?.IdToken) {
-            localStorage.setItem(
-              'idToken',
-              response.AuthenticationResult.IdToken
-            );
-            this.redirectToHome();
-          }
-        });
+      this.listenWhenLogin();
+      const username = this.username.value ?? '';
+      const password = this.password.value ?? '';
+      this.accountRepository.login(username, password);
+
+      // this.accountService
+      //   .login(this.username.value ?? '', this.password.value ?? '')
+      //   .subscribe((response: AuthResponse) => {
+      //     console.log(response);
+      //     if (response.AuthenticationResult?.IdToken) {
+      //       localStorage.setItem(
+      //         'idToken',
+      //         response.AuthenticationResult.IdToken
+      //       );
+      //       this.redirectToHome();
+      //     }
+      //   });
     }
   }
 
