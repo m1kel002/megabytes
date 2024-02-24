@@ -61,9 +61,11 @@ export class WelcomePageComponent {
   }
 
   listenWhenLogin() {
-    this.accountRepository.isLoggedIn$.subscribe((isLoggedIn) =>
-      this.redirectToHome()
-    );
+    this.accountRepository.isLoggedIn$.subscribe((isLoggedIn) => {
+      if (isLoggedIn) {
+        this.redirectToHome();
+      }
+    });
   }
 
   onSubmit() {

@@ -21,7 +21,6 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log('@Auth guard', this.cognitoService.getCurrentUser());
-    return !!this.cognitoService.getCurrentUser();
-  }
+      return !!localStorage.getItem('idToken');
+    }
 }

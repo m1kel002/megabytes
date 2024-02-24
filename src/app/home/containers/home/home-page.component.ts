@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { PostComponent } from '../../components/post/post.component';
 import { AccountService } from 'src/app/account/services/account.service';
+import { AccountRepository } from 'src/app/shared/repositories/account.repository';
 @Component({
   selector: 'app-home',
   templateUrl: './home-page.component.html',
@@ -15,7 +16,7 @@ export class HomePageComponent implements OnInit {
   showMenu = new BehaviorSubject<boolean>(false);
   posts = [1, 2, 3, 4, 5];
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountRepository: AccountRepository) {}
 
   ngOnInit(): void {
     this.getUserProfile();
@@ -26,8 +27,6 @@ export class HomePageComponent implements OnInit {
   }
 
   getUserProfile() {
-    this.accountService.getProfile().subscribe((response) => {
-      console.log('@getprofile', response);
-    });
+    this.accountRepository.getProfile();
   }
 }

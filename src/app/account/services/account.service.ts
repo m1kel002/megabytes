@@ -32,7 +32,7 @@ export class AccountService {
   getProfile() {
     const headers = new HttpHeaders().set(
       'Authorization',
-      localStorage.getItem('idToken') ?? ''
+      `${localStorage.getItem('idToken') ?? ''}`
     );
     return this.http.get(`${this.BASE_URL}/profile`, { headers: headers });
   }
