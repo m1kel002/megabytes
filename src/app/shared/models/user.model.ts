@@ -9,6 +9,7 @@ export type User = Partial<
     birthdate: string;
     firstName: string | null | undefined;
     lastName: string | null | undefined;
+    idToken: string;
   }>
 >;
 
