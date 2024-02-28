@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CognitoService } from '../../services/cognito.service';
 import { Router } from '@angular/router';
+import { AccountRepository } from '../../repositories/account.repository';
 
 @Component({
   selector: 'app-blank',
@@ -8,17 +8,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./blank.component.scss'],
 })
 export class BlankComponent implements OnInit {
-  constructor(private cognitoService: CognitoService, private router: Router) {}
+  constructor(
+    private accountRepository: AccountRepository,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.navigateUser();
   }
 
   navigateUser() {
-    if (!!this.cognitoService.getCurrentUser()) {
+    if (this.checkTokenExists()) {
       this.router.navigate(['/home']);
     } else {
-      this.router.navigate(['/welcome']);
+      this.router.navigate(['/login']);
     }
+  }
+
+  checkTokenExists() {
+    return !!localStorage.getItem('idToken');
   }
 }

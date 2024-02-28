@@ -7,7 +7,7 @@ import { BlankComponent } from './shared/containers/blank/blank.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'login',
     component: WelcomePageComponent,
   },
   {

@@ -10,7 +10,7 @@ import { AccountRepository } from 'src/app/shared/repositories/account.repositor
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
   standalone: true,
-  imports: [MatIconModule, CommonModule, PostComponent],
+  imports: [MatIconModule, CommonModule, PostComponent, MatIconModule],
 })
 export class HomePageComponent implements OnInit {
   showMenu = new BehaviorSubject<boolean>(false);
@@ -18,15 +18,11 @@ export class HomePageComponent implements OnInit {
 
   constructor(private accountRepository: AccountRepository) {}
 
-  ngOnInit(): void {
-    this.getUserProfile();
-  }
+  ngOnInit(): void {}
 
   toggleMenu() {
     this.showMenu.next(!this.showMenu.value);
   }
 
-  getUserProfile() {
-    this.accountRepository.getProfile();
-  }
+  getUserProfile() {}
 }

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/shared/models/user.model';
 import { userStore } from 'src/app/shared/stores/user.store';
@@ -29,12 +29,13 @@ export class AccountService {
     });
   }
 
-  getProfile() {
+  getProfile(username: string) {
     const headers = new HttpHeaders().set(
       'Authorization',
       `${localStorage.getItem('idToken') ?? ''}`
     );
-    return this.http.get(`${this.BASE_URL}/profile`, { headers: headers });
+    const params = new HttpParams().set('username', username);
+    return this.http.get(`${this.BASE_URL}/profile`, { params, headers });
   }
 
   testGetProfile() {
