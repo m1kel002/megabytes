@@ -11,6 +11,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AccountService } from '../../services/account.service';
 import { Router } from '@angular/router';
 import { AccountRepository } from 'src/app/shared/repositories/account.repository';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signup-dialog',
@@ -27,6 +28,7 @@ import { AccountRepository } from 'src/app/shared/repositories/account.repositor
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    CommonModule,
   ],
   providers: [AccountRepository],
 })
@@ -38,9 +40,8 @@ export class SignupDialogComponent implements OnInit {
     firstName: this.fb.control('', [Validators.required]),
     lastName: this.fb.control('', [Validators.required]),
     username: this.fb.control('', [Validators.required]),
-    email: this.fb.control('', [Validators.required]),
+    email: this.fb.control('', [Validators.required, Validators.email]),
     password: this.fb.control('', [Validators.required]),
-    // TODO: add custom validator to validate password and confirmPassword
     confirmPassword: this.fb.control('', [Validators.required]),
     birthdate: this.fb.control('', [Validators.required]),
     gender: this.fb.control('', [Validators.required]),
@@ -87,7 +88,11 @@ export class SignupDialogComponent implements OnInit {
   ) {}
 
   onSubmit() {
-    console.log('@onSubmit', this.signUpForm.getRawValue());
+    if (!this.isPasswordMatch()) {
+      this.confirmPassword.setErrors({ notMatch: true });
+      return;
+    }
+
     if (this.signUpForm.valid) {
       this.accountRepository.signup({
         username: this.username.value ?? '',
@@ -100,6 +105,15 @@ export class SignupDialogComponent implements OnInit {
       });
       this.listenWhenSaving();
     }
+  }
+
+  isPasswordMatch() {
+    return (
+      !!this.signUpForm.dirty &&
+      !!this.password.value?.trim() &&
+      this.confirmPassword.value?.trim() &&
+      this.password.value === this.confirmPassword.value
+    );
   }
 
   onClose() {
