@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
-import { CognitoService } from './cognito.service';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private cognitoService: CognitoService) {}
+  constructor(private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -21,6 +21,15 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-      return !!localStorage.getItem('idToken');
+    const isLoggedIn = !!localStorage.getItem('idToken');
+    if (!isLoggedIn) {
+      this.redirectToLogin();
     }
+
+    return of(isLoggedIn);
+  }
+
+  private redirectToLogin() {
+    this.router.navigate(['/login']);
+  }
 }
