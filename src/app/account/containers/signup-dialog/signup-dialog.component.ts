@@ -12,6 +12,7 @@ import { AccountService } from '../../services/account.service';
 import { Router } from '@angular/router';
 import { AccountRepository } from 'src/app/shared/repositories/account.repository';
 import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-signup-dialog',
@@ -28,6 +29,7 @@ import { CommonModule } from '@angular/common';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressSpinnerModule,
     CommonModule,
   ],
   providers: [AccountRepository],

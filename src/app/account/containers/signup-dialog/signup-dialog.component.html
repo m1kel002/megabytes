@@ -64,7 +64,19 @@
         <mat-error *ngIf="confirmPassword.hasError('required')">Confirm Password is required</mat-error>
         <mat-error *ngIf="confirmPassword.hasError(('notMatch'))">Password do not match</mat-error>
       </mat-form-field>
-      <button mat-flat-button color="primary">Sign Up</button>
+      <button mat-flat-button color="primary">
+        <span>
+          <mat-spinner
+          class="button-spinner"
+          [color]="'white'"
+          [diameter]="35"
+          *ngIf="loading$ | async">
+          </mat-spinner>
+        </span>
+        <span *ngIf="!(loading$ | async)">
+          Sign Up
+        </span>
+      </button>
     </form>
   </div>
 </div>

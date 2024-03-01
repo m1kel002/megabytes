@@ -27,10 +27,14 @@ export class AccountRepository {
 
   signup(user: User) {
     this.loading$.next(true);
-    this.accountService.signup(user).subscribe((response) => {
-      console.log('@signup response', response);
-      this.isSignedup$.next(true);
-      this.loading$.next(false);
+    this.accountService.signup(user).subscribe({
+      next: (res) => {
+        this.loading$.next(false);
+        this.isSignedup$.next(true);
+      },
+      error: (err) => {
+        this.loading$.next(false);
+      },
     });
   }
 
