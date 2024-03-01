@@ -3,7 +3,7 @@
         <app-signup-dialog (onCloseSignupForm)="onCloseSignupForm()"></app-signup-dialog>
     </mat-drawer>
 <mat-drawer-content>
-        <div class="welcome-container">
+<div class="welcome-container">
     <div class="banner-container">
         <div class="logo">
             <h1>Megabytes</h1>
@@ -23,7 +23,10 @@
                     <input matInput name="password" formControlName="password" type="password">
                     <a href="#">forgot password?</a>
                 </div>
-                <input type="submit" value="Log in">
+                <!-- <input type="submit" value="Log in"> -->
+                <app-generic-button
+                [loading$]="loading$"
+                [title]="'Login'"></app-generic-button>
             </form>
             <div class="signup-container">
                 Haven't registered yet?

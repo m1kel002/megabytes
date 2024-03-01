@@ -13,6 +13,7 @@ import { BehaviorSubject } from 'rxjs';
 import { AccountService } from '../../services/account.service';
 import { Router } from '@angular/router';
 import { AccountRepository } from 'src/app/shared/repositories/account.repository';
+import { GenericButtonComponent } from 'src/app/shared/components/generic-button/generic-button.component';
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
@@ -27,11 +28,13 @@ import { AccountRepository } from 'src/app/shared/repositories/account.repositor
     SignupDialogComponent,
     DialogComponent,
     MatSidenavModule,
+    GenericButtonComponent,
   ],
   providers: [AccountRepository],
 })
 export class WelcomePageComponent {
   isDrawerOpened$ = new BehaviorSubject<boolean>(false);
+  loading$ = this.accountRepository.loading$;
   protected loginForm = this.fb.group({
     username: this.fb.control('', Validators.required),
     password: this.fb.control('', Validators.required),
