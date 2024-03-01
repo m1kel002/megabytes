@@ -30,7 +30,6 @@ import { GenericButtonComponent } from 'src/app/shared/components/generic-button
     MatSidenavModule,
     GenericButtonComponent,
   ],
-  providers: [AccountRepository],
 })
 export class WelcomePageComponent {
   isDrawerOpened$ = new BehaviorSubject<boolean>(false);
