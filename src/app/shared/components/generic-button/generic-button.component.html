@@ -1,0 +1,12 @@
+<button mat-flat-button color="primary">
+    <span>
+      <mat-spinner
+      class="button-spinner"
+      [diameter]="diameter"
+      *ngIf="loading$ | async">
+      </mat-spinner>
+    </span>
+    <span *ngIf="!(loading$ | async)">
+      {{ title }}
+    </span>
+  </button>
