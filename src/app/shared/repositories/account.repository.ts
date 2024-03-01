@@ -18,10 +18,18 @@ export class AccountRepository {
   public profile$ = userStore.pipe(select((state) => state));
 
   login(username: string, password: string) {
-    this.accountService.login(username, password).subscribe((response) => {
-      userStore.update(setEntities([response as Profile]));
-      localStorage.setItem('idToken', (response as Profile).idToken || '');
-      this.isLoggedIn$.next(true);
+    this.loading$.next(true);
+    this.accountService.login(username, password).subscribe({
+      next: (res) => {
+        userStore.update(setEntities([res as Profile]));
+        localStorage.setItem('idToken', (res as Profile).idToken || '');
+        this.isLoggedIn$.next(true);
+        this.loading$.next(false);
+      },
+      error: (err) => {
+        this.isLoggedIn$.next(false);
+        this.loading$.next(false);
+      },
     });
   }
 
