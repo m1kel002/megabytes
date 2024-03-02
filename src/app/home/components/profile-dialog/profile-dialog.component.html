@@ -1,0 +1,10 @@
+<div class="profile-container">
+        <h3>
+            {{ (userProfile | async)?.name }}
+        </h3>
+    <p>@{{ (userProfile | async)?.username }}</p>
+
+    <p class="logout" (click)="onClickLogout()">
+        logout
+    </p>
+</div>
