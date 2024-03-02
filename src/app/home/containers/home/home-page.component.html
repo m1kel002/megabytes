@@ -13,9 +13,17 @@
                 <a class="nav-link" href="">Messages</a>
             </li>
             <li>
-                <a class="nav-link" href="">
-                    <mat-icon>account_circle</mat-icon>
-                </a>
+                <mat-icon #profileToggle class="profile-toggle" (click)="toggleMenu()"
+                cdkOverlayOrigin #trigger="cdkOverlayOrigin">account_circle</mat-icon>
+                <ng-template 
+                cdkConnectedOverlay
+                [cdkConnectedOverlayOrigin]="trigger"
+                [cdkConnectedOverlayOpen]="showMenu.value">
+                    <app-profile-dialog
+                    [userProfile]="userProfile$"
+                    (onLogout)="onClickLogout()"
+                    ></app-profile-dialog>
+                </ng-template>
             </li>
         </ul>
     </nav>

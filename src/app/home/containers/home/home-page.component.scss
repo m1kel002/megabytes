@@ -24,7 +24,7 @@
         right: 0;
         padding: 1rem;
         background-color: #20272E;
-        color: white;
+        // color: white;
         z-index: 999;
 
         .close-menu {
@@ -50,6 +50,9 @@
                 text-decoration: none;
             }
 
+            .profile-toggle:hover {
+                cursor: pointer;
+            }
         }
     }
 }
