@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Profile, User } from '../models/user.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { AccountService } from 'src/app/account/services/account.service';
 import { userStore } from '../stores/user.store';
-import { AuthResponse } from '../models/auth-response.model';
-import { setEntities, updateEntities } from '@ngneat/elf-entities';
+import {
+  resetActiveIds,
+  selectActiveEntities,
+  setActiveIds,
+  setEntities,
+} from '@ngneat/elf-entities';
 import { select } from '@ngneat/elf';
 
 @Injectable({ providedIn: 'root' })
@@ -15,13 +19,18 @@ export class AccountRepository {
   public loading$ = new BehaviorSubject<boolean>(false);
   public saving$ = new BehaviorSubject<boolean>(false);
   public isLoggedIn$ = new BehaviorSubject<boolean>(false);
-  public profile$ = userStore.pipe(select((state) => state));
+  // public profile$ = userStore.pipe(select((state) => state));
+  public profile$ = userStore.pipe(
+    selectActiveEntities(),
+    map((profile) => profile[0])
+  );
 
   login(username: string, password: string) {
     this.loading$.next(true);
     this.accountService.login(username, password).subscribe({
       next: (res) => {
-        userStore.update(setEntities([res as Profile]));
+        const profile = res as Profile;
+        userStore.update(setEntities([profile]), setActiveIds([profile.id]));
         localStorage.setItem('idToken', (res as Profile).idToken || '');
         this.isLoggedIn$.next(true);
         this.loading$.next(false);
@@ -52,5 +61,10 @@ export class AccountRepository {
       console.log('@getProfile', response);
       this.loading$.next(false);
     });
+  }
+
+  logout() {
+    localStorage.removeItem('idToken');
+    userStore.update(resetActiveIds());
   }
 }
