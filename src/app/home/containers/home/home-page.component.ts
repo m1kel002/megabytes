@@ -9,6 +9,7 @@ import { ProfileDialogComponent } from '../../components/profile-dialog/profile-
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { Router } from '@angular/router';
+import { PostRepository } from '../../repositories/post.repository';
 @Component({
   selector: 'app-home',
   templateUrl: './home-page.component.html',
@@ -33,11 +34,13 @@ export class HomePageComponent implements OnInit {
   constructor(
     private accountRepository: AccountRepository,
     public matDialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private postRepository: PostRepository
   ) {}
 
   ngOnInit(): void {
     this.getUserProfile();
+    this.postRepository.getPosts();
   }
 
   toggleMenu() {
