@@ -28,8 +28,8 @@
         </ul>
     </nav>
 </div>
-<section class="content-section">
+<section class="content-section" *ngrxLet="posts$ as posts">
         <div class="content" *ngFor="let post of posts">
-            <app-post></app-post>
+            <app-post [post]="post"></app-post>
         </div>
 </section>

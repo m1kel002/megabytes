@@ -10,6 +10,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { Router } from '@angular/router';
 import { PostRepository } from '../../repositories/post.repository';
+import { LetModule } from '@ngrx/component';
 @Component({
   selector: 'app-home',
   templateUrl: './home-page.component.html',
@@ -23,12 +24,13 @@ import { PostRepository } from '../../repositories/post.repository';
     ProfileDialogComponent,
     MatDialogModule,
     OverlayModule,
+    LetModule,
   ],
 })
 export class HomePageComponent implements OnInit {
   @ViewChild('profileToggle') profileToggle: ElementRef;
   showMenu = new BehaviorSubject<boolean>(false);
-  posts = [1, 2, 3, 4, 5];
+  posts$ = this.postRepository.posts$;
   userProfile$ = this.accountRepository.profile$;
 
   constructor(
@@ -39,8 +41,8 @@ export class HomePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getUserProfile();
     this.postRepository.getPosts();
+    this.getUserProfile();
   }
 
   toggleMenu() {
