@@ -22,26 +22,30 @@
     width: 100%;
     display: flex;
     justify-content: start;
-    align-items: center;
+    flex-direction: row;
+    align-items: end;
+    padding: 0.5rem 0.5rem 0 0.5rem;
 
-    .vote {
-      .upvote,
-      .downvote {
-        margin: 0.5rem;
-        height: 30px;
-        width: 30px;
-        padding: 0.5rem;
-        // background-color: aquamarine;
+    .upvote,
+    .downvote {
+      margin: 0.3rem;
+      height: 25px;
+      width: 25px;
+      padding: 0.2rem;
+      img {
+        height: 100%;
+        width: 100%;
       }
+    }
 
-      .downvote {
+    .downvote {
+      img {
         rotate: 180deg;
       }
     }
 
     .comments {
       flex-grow: 1;
-      padding: 1rem;
       text-align: center;
 
       .comments-icon {
