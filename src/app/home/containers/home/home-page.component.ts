@@ -11,6 +11,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { Router } from '@angular/router';
 import { PostRepository } from '../../repositories/post.repository';
 import { LetModule } from '@ngrx/component';
+import { CreatePostComponent } from '../../components/create-post/create-post.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home-page.component.html',
@@ -25,6 +26,7 @@ import { LetModule } from '@ngrx/component';
     MatDialogModule,
     OverlayModule,
     LetModule,
+    CreatePostComponent,
   ],
 })
 export class HomePageComponent implements OnInit {

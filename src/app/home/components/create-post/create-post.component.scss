@@ -1,0 +1,31 @@
+.create-post-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+    .container {
+    background-color: white;
+    padding: 1rem;
+    height: 170px;
+    max-height: 170px;
+    max-width: 720px;
+    display: block;
+    border-radius: 5px;
+
+    textarea {
+        height: 70%;
+        max-height: 90px;
+        width: 100%;
+        padding: 5px;
+    }
+
+    button {
+        text-align: center;
+        width: 100%;
+        height: 40px;
+        margin-top: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 5px;
+    }
+}}
