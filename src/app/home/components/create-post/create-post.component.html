@@ -1,7 +1,7 @@
 <div class="create-post-container">
     <div class="container">
-        <textarea cols="30" rows="10" placeholder="What's on your mind?"></textarea>
-        <button>Post</button>
+        <textarea #postText cols="30" rows="10" placeholder="What's on your mind?"></textarea>
+        <button (click)="onSubmit(postText.value)">Post</button>
     </div>
 
 </div>

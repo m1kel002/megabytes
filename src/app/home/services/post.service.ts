@@ -12,9 +12,10 @@ export class PostService {
   }
 
   createPost(message: string, userId: string) {
+    console.log('@user', userId);
     return this.http.post(`${this.BASE_URL}/post`, {
-      message,
       userId,
+      message,
     });
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PostRepository } from '../../repositories/post.repository';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-create-post',
@@ -6,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-post.component.scss'],
   standalone: true,
 })
-export class CreatePostComponent implements OnInit {
-  constructor() {}
+export class CreatePostComponent {
+  constructor(private postRepository: PostRepository) {}
 
-  ngOnInit(): void {}
+  onSubmit(message: string) {
+    this.postRepository.createPost(message);
+  }
 }
